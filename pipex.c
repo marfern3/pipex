@@ -9,7 +9,11 @@ void	exec_cmd(char *cmd, char **envp)
 
 	args = ft_split(cmd, ' ');
 	if (!args || !args[0])
+	{
+		write(2, "Error: comando vacío\n", 22);
+		free_split(args);
 		exit(1);
+	}
 	path = get_cmd_path(args[0], envp);
 	if (!path)
 	{
